@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Tablas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<link rel="icon" href="logo.png" type="image/png">
+
+<body class="page-contraparte">
+    <div class="container">
+        <h1>Excel Senebi Quantex</h1>
+        <nav class="navbar">
+            <div class="navbar-links">
+                <a href="index.html">Senebis Internos</a>
+                <a href="contraparte.html" class="active">Senebis Contraparte</a>
+            </div>
+            <button id="modeToggleBtn" type="button" class="mode-toggle-btn">🌙 Modo Oscuro</button>
+        </nav>
+        <div class="containter-text-buttons">
+            <textarea id="inputText" rows="10" placeholder="Ingresa tu texto aquí..."></textarea>
+            <div class="container-buttons">
+                <button id="generateTableBtn">Generar Tabla</button>
+                <button id="downloadExcelBtn">Descargar Excel</button>
+                <button id="resetCounterBtn">Resetear Contador</button>
+            </div>
+        </div>
+        <div class="container-select">
+            <label for="plazoSelect">Seleccione Plazo:</label>
+            <select id="plazoSelect">
+                <option value="CI">CI</option>
+                <option value="24">24</option>
+            </select>
+            <span class="theme-badge" id="plazoBadge">CI</span>
+        </div>
+        <div class="container-contraparte">
+            <label for="contraparteInput">Número de Contraparte:</label>
+            <input type="text" id="contraparteInput" placeholder="Ej: 123">
+        </div>
+        <div id="tableContainer"></div>
+        <div class="container-version">Version 18.03.2026</div>
+    </div>
+    <script src="theme-mode.js"></script>
+    <script src="contraparte.js"></script>
+</body>
+</html>

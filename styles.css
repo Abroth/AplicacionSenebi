@@ -1,0 +1,363 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #161616;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: rgb(226, 226, 226);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.container-version{
+    color: black;
+    font-size: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-toggle-btn {
+    width: auto;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* ID para ganar especificidad sobre los temas de plazo (CI/24), que también estilan <button> */
+#modeToggleBtn {
+    background-color: #cfcfcf;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#modeToggleBtn:hover {
+    background-color: #b8b8b8;
+}
+
+.navbar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    background-color: #cfcfcf;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #b8b8b8;
+}
+
+.navbar a.active {
+    background-color: #00ff6a;
+    color: #000;
+}
+
+.container-contraparte {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.container-contraparte label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.container-contraparte input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #008035;
+    border-radius: 4px;
+}
+
+textarea:hover{
+    border: 1px, solid, #00ff6a;
+}
+
+
+
+.containter-text-buttons{
+    display: flex;
+}
+
+.container-buttons{
+    width: 80%;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container-select {
+    margin: 20px 0;
+    text-align: center;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #00ff6a;
+    color: rgb(0, 0, 0);
+    border: 2.5px, solid, #008035;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #00da5b;
+    color: #ffffff;
+    border: 2.5px, solid, #00ff6a;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #00cc55;
+    text-align: left;
+}
+
+/* ── Tema CI (verde, por defecto) ── */
+body.theme-CI button {
+    background-color: #00ff6a;
+    color: #000;
+}
+body.theme-CI button:hover {
+    background-color: #00da5b;
+    color: #fff;
+}
+body.theme-CI textarea {
+    border: 1px solid #008035;
+}
+body.theme-CI th {
+    background-color: #008035;
+    color: #fff;
+}
+body.theme-CI td, body.theme-CI th {
+    border-color: #00cc55;
+}
+body.theme-CI .theme-badge {
+    background-color: #00ff6a;
+    color: #000;
+}
+
+/* ── Tema 24 (azul) ── */
+body.theme-24 {
+    background-color: #0a0f1e;
+}
+body.theme-24 .container {
+    background: #dde6f5;
+}
+body.theme-24 button {
+    background-color: #2979ff;
+    color: #fff;
+}
+body.theme-24 button:hover {
+    background-color: #1a5ecc;
+    color: #fff;
+}
+body.theme-24 textarea {
+    border: 1px solid #2979ff;
+}
+body.theme-24 th {
+    background-color: #1a3a7a;
+    color: #fff;
+}
+body.theme-24 td, body.theme-24 th {
+    border-color: #2979ff;
+}
+body.theme-24 #plazoSelect {
+    border-color: #2979ff;
+    outline-color: #2979ff;
+}
+body.theme-24 .theme-badge {
+    background-color: #2979ff;
+    color: #fff;
+}
+
+/* ── Senebis Contraparte: Tema CI (violeta) ── */
+body.page-contraparte.theme-CI {
+    background-color: #1b0f24;
+}
+body.page-contraparte.theme-CI .container {
+    background: #ecdff5;
+}
+body.page-contraparte.theme-CI button {
+    background-color: #ab47bc;
+    color: #fff;
+}
+body.page-contraparte.theme-CI button:hover {
+    background-color: #8e24aa;
+    color: #fff;
+}
+body.page-contraparte.theme-CI textarea {
+    border: 1px solid #8e24aa;
+}
+body.page-contraparte.theme-CI th {
+    background-color: #6a1b9a;
+    color: #fff;
+}
+body.page-contraparte.theme-CI td, body.page-contraparte.theme-CI th {
+    border-color: #ab47bc;
+}
+body.page-contraparte.theme-CI #plazoSelect,
+body.page-contraparte.theme-CI .container-contraparte input {
+    border-color: #8e24aa;
+    outline-color: #8e24aa;
+}
+body.page-contraparte.theme-CI .theme-badge {
+    background-color: #ab47bc;
+    color: #fff;
+}
+body.page-contraparte.theme-CI .navbar a.active {
+    background-color: #ab47bc;
+    color: #fff;
+}
+
+/* ── Senebis Contraparte: Tema 24 (naranja) ── */
+body.page-contraparte.theme-24 {
+    background-color: #2a1400;
+}
+body.page-contraparte.theme-24 .container {
+    background: #fbe3cf;
+}
+body.page-contraparte.theme-24 button {
+    background-color: #ff9800;
+    color: #000;
+}
+body.page-contraparte.theme-24 button:hover {
+    background-color: #e65100;
+    color: #fff;
+}
+body.page-contraparte.theme-24 textarea {
+    border: 1px solid #e65100;
+}
+body.page-contraparte.theme-24 th {
+    background-color: #bf360c;
+    color: #fff;
+}
+body.page-contraparte.theme-24 td, body.page-contraparte.theme-24 th {
+    border-color: #ff9800;
+}
+body.page-contraparte.theme-24 #plazoSelect,
+body.page-contraparte.theme-24 .container-contraparte input {
+    border-color: #e65100;
+    outline-color: #e65100;
+}
+body.page-contraparte.theme-24 .theme-badge {
+    background-color: #ff9800;
+    color: #000;
+}
+body.page-contraparte.theme-24 .navbar a.active {
+    background-color: #ff9800;
+    color: #000;
+}
+
+/* Badge indicador de plazo activo */
+.theme-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+
+/* ── Modo Oscuro (aplica sobre cualquier tema CI/24, en cualquier página) ──
+   Usa !important porque los temas de plazo (page-contraparte.theme-*) tienen
+   mayor especificidad y si no, ganarían por sobre este override de usuario. */
+body.mode-dark {
+    background-color: #050505 !important;
+}
+body.mode-dark .container {
+    background: #1e1e1e !important;
+    color: #f0f0f0 !important;
+}
+body.mode-dark h1,
+body.mode-dark label {
+    color: #f0f0f0 !important;
+}
+body.mode-dark .container-version {
+    color: #aaaaaa !important;
+}
+body.mode-dark textarea,
+body.mode-dark .container-contraparte input {
+    background-color: #2a2a2a !important;
+    color: #f0f0f0 !important;
+}
+body.mode-dark select#plazoSelect {
+    background-color: #2a2a2a !important;
+    color: #f0f0f0 !important;
+}
+body.mode-dark table {
+    color: #f0f0f0 !important;
+}
+body.mode-dark .navbar-links a {
+    background-color: #333 !important;
+    color: #f0f0f0 !important;
+}
+body.mode-dark .navbar-links a:hover {
+    background-color: #444 !important;
+}
+body.mode-dark #modeToggleBtn {
+    background-color: #333 !important;
+    color: #f0f0f0 !important;
+}
+body.mode-dark #modeToggleBtn:hover {
+    background-color: #444 !important;
+}
+
+/* Transición suave en todos los elementos */
+body, .container, button, textarea, th, td, #plazoSelect, input, .navbar-links a {
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
