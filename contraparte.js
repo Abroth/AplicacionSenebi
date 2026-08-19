@@ -116,12 +116,41 @@ function generateTable() {
     tableContainer.appendChild(table);
 }
 
-// Formato de línea: "8 COMPRA 251.162 GD35 121.595,010"
+// Formato largo (trae contraparte y cartera propia en la línea, pero se ignoran:
+// siempre se usan los campos "Número de Contraparte" y "Cartera Propia" del formulario):
+// "1000 compra a INVIU 1.575.000 GD46 @ 105.469,008"
+// <cartera propia ignorada> <compra|venta> a <contraparte ignorada> <cantidad> <instrumento> @ <precio>
+const LINE_FORMAT_CON_CONTRAPARTE = /^(\d+)\s+(compra|vende|venta)\s+a\s+(\S+)\s+([\d.,]+)\s+(\S+)\s+@\s+([\d.,]+)$/i;
+
+// Formato simple (usa los campos "Número de Contraparte" y "Cartera Propia" del formulario):
+// "8 COMPRA 251.162 GD35 121.595,010"
 // <numero descartado> <compra|venta> <cantidad> <instrumento> <precio>
+const LINE_FORMAT_SIMPLE = /^\d+\s+(compra|vende|venta)\s+([\d.,]+)\s+(\S+)\s+([\d.,]+)$/i;
+
 function parseLine(line, plazo, contraparte, carteraPropia) {
-    const match = line.trim().match(/^\d+\s+(compra|vende|venta)\s+([\d.,]+)\s+(\S+)\s+([\d.,]+)$/i);
-    if (match) {
-        const [ , tipoTransaccion, cantidad, instrumento, precio ] = match;
+    const trimmed = line.trim();
+
+    const fullMatch = trimmed.match(LINE_FORMAT_CON_CONTRAPARTE);
+    if (fullMatch) {
+        const [ , , tipoTransaccion, , cantidad, instrumento, precio ] = fullMatch;
+        const tipoTransaccionNormalized = tipoTransaccion.toLowerCase() === 'compra' ? 'COMPRA' : 'VENTA';
+        const cantidadClean = cantidad.replace(/\./g, '');
+
+        return [
+            tipoTransaccionNormalized, // OPERACION
+            instrumento.toUpperCase(), // INSTRUMENTO
+            plazo,                     // PLAZO
+            precio,                    // PRECIO
+            cantidadClean,             // CANTIDAD
+            contraparte,               // CONTRAPARTE (del formulario)
+            '',                        // COMITENTE
+            carteraPropia              // CARTERA PROPIA (del formulario)
+        ];
+    }
+
+    const simpleMatch = trimmed.match(LINE_FORMAT_SIMPLE);
+    if (simpleMatch) {
+        const [ , tipoTransaccion, cantidad, instrumento, precio ] = simpleMatch;
         const tipoTransaccionNormalized = tipoTransaccion.toLowerCase() === 'compra' ? 'COMPRA' : 'VENTA';
         const cantidadClean = cantidad.replace(/\./g, '');
 
@@ -136,6 +165,7 @@ function parseLine(line, plazo, contraparte, carteraPropia) {
             carteraPropia              // CARTERA PROPIA
         ];
     }
+
     return [];
 }
 
