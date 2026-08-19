@@ -52,6 +52,7 @@ function generateTable() {
     const tableContainer = document.getElementById('tableContainer');
     const plazoSelected = document.getElementById('plazoSelect').value;
     const contraparteValue = document.getElementById('contraparteInput').value.trim();
+    const carteraPropiaValue = document.getElementById('carteraPropiaSelect').value;
 
     // Limpiar el contenedor de la tabla anterior
     tableContainer.innerHTML = '';
@@ -78,7 +79,7 @@ function generateTable() {
 
     lines.forEach((line, index) => {
         const row = document.createElement('tr');
-        const cells = parseLine(line, plazoSelected, contraparteValue);
+        const cells = parseLine(line, plazoSelected, contraparteValue, carteraPropiaValue);
 
         if (cells.length > 0) {
             // Agregar el índice al inicio
@@ -117,7 +118,7 @@ function generateTable() {
 
 // Formato de línea: "8 COMPRA 251.162 GD35 121.595,010"
 // <numero descartado> <compra|venta> <cantidad> <instrumento> <precio>
-function parseLine(line, plazo, contraparte) {
+function parseLine(line, plazo, contraparte, carteraPropia) {
     const match = line.trim().match(/^\d+\s+(compra|vende|venta)\s+([\d.,]+)\s+(\S+)\s+([\d.,]+)$/i);
     if (match) {
         const [ , tipoTransaccion, cantidad, instrumento, precio ] = match;
@@ -132,7 +133,7 @@ function parseLine(line, plazo, contraparte) {
             cantidadClean,             // CANTIDAD
             contraparte,               // CONTRAPARTE
             '',                        // COMITENTE
-            '8'                        // CARTERA PROPIA
+            carteraPropia              // CARTERA PROPIA
         ];
     }
     return [];
